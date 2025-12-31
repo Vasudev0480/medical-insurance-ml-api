@@ -6,6 +6,10 @@ import pandas as pd
 from pathlib import Path
 
 app = FastAPI(title="Medical Insurance Premium Predictor")
+@app.get("/")
+def root():
+    return {"message": "API is running successfully. Go to /docs"}
+
 
 # Always resolve paths relative to this file (api/main.py)
 BASE_DIR = Path(__file__).resolve().parent  # api/
