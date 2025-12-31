@@ -1,4 +1,6 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
+
 from pydantic import BaseModel, Field
 import json
 import joblib
@@ -6,10 +8,9 @@ import pandas as pd
 from pathlib import Path
 
 app = FastAPI(title="Medical Insurance Premium Predictor")
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def root():
-    return {"message": "API is running successfully. Go to /docs"}
-
+    return RedirectResponse(url="/docs")
 
 # Always resolve paths relative to this file (api/main.py)
 BASE_DIR = Path(__file__).resolve().parent  # api/
